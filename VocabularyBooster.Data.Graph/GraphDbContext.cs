@@ -19,14 +19,6 @@ namespace VocabularyBooster.Data.Graph
             this.Driver?.Dispose();
         }
 
-
-        /// <summary>
-        /// Execute the cypher query with parameters.
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <param name="query"></param>
-        /// <param name="operation"></param>
-        /// <returns>True if at least one object has been created/updated.</returns>
         public async Task<T> WriteTransaction<T>(Dictionary<string, object> parameters, string query, Func<IRecord, T> operation = null)
         {
             return await this.WriteTransactionAsync(parameters, query, async result =>
@@ -41,24 +33,11 @@ namespace VocabularyBooster.Data.Graph
             });
         }
 
-        /// <summary>
-        /// Execute the cypher query with parameters.
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <param name="query"></param>
-        /// <returns>True if at least one object has been created/updated.</returns>
         public async Task<bool> WriteTransaction(Dictionary<string, object> parameters, string query)
         {
             return await this.WriteTransactionAsync(parameters, query, async result => (await result.ConsumeAsync()).Counters.ContainsUpdates);
         }
 
-        /// <summary>
-        /// Execute the cypher query with parameters.
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <param name="query"></param>
-        /// <param name="operation"></param>
-        /// <returns>True if at least one object has been created/updated.</returns>
         public async Task<T> WriteTransactionAsync<T>(Dictionary<string, object> parameters, string query, Func<IResultCursor, Task<T>> operation = null)
         {
             bool status;
@@ -81,12 +60,6 @@ namespace VocabularyBooster.Data.Graph
             return value;
         }
 
-        /// <summary>
-        /// Executes one more cypher queries in a single transaction.
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <param name="queries"></param>
-        /// <returns>True if at least one of the queries has created/updated some object.</returns>
         public async Task<bool> WriteTransactions(Dictionary<string, object> parameters, string[] queries)
         {
             var status = false;
