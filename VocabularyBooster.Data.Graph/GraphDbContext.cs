@@ -53,7 +53,8 @@ namespace VocabularyBooster.Data.Graph
                         value = await operation(result);
                     }
 
-                    return (await result.ConsumeAsync()).Counters.ContainsUpdates;
+                    var consume = await result.ConsumeAsync();
+                    return consume.Counters.ContainsUpdates;
                 });
             }
 
