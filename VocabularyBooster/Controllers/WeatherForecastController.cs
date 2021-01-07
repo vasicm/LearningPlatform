@@ -4,13 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 using VocabularyBooster.Core.GraphModel;
 using VocabularyBooster.Service;
 
 namespace VocabularyBooster.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
+    [ApiController]
+    [ApiVersion("1.0")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -37,6 +39,7 @@ namespace VocabularyBooster.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(OperationId = nameof(Get))]
         public IEnumerable<WeatherForecast> Get()
         {
             this.wordService.AddOrUpdateWord(new Word()

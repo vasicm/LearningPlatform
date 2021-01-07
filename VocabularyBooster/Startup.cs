@@ -1,13 +1,20 @@
-﻿using Autofac;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VocabularyBooster.Data.Graph;
+using VocabularyBooster.Options;
 
 namespace VocabularyBooster
 {
@@ -35,6 +42,14 @@ namespace VocabularyBooster
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddCustomSwagger(this.Configuration)
+                .AddCustomApiVersioning()
+                .AddVersionedApiExplorer(x =>
+                {
+                    x.GroupNameFormat = "'v'VVV";
+                    x.SubstituteApiVersionInUrl = true;
+                });
 
             // autofac setup
             var builder = new ContainerBuilder();
@@ -82,17 +97,23 @@ namespace VocabularyBooster
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            var enabledSpa = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.EnabledSpa)] == "True";
+            if (enabledSpa)
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
+                app.UseSpa(spa =>
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+                    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                    // see https://go.microsoft.com/fwlink/?linkid=864501
+                    spa.Options.SourcePath = "ClientApp";
+
+                    if (env.IsDevelopment())
+                    {
+                        spa.UseAngularCliServer(npmScript: "start");
+                    }
+                });
+            }
+
+            this.ConfigureOptionalServices(app);
         }
 
         protected virtual void SetupDb(IServiceCollection services)
@@ -104,6 +125,64 @@ namespace VocabularyBooster
         {
             // project service registrations with autofac
             builder.AddProjectServices();
+        }
+
+        protected virtual void ConfigureOptionalServices(IApplicationBuilder app)
+        {
+            // set default request culture
+            var cultureInfo = new CultureInfo("en");
+            var supportedCultures = new[]
+            {
+                cultureInfo,
+                new CultureInfo("sl"),
+                new CultureInfo("en"),
+            };
+
+            // Configure the Localization middleware
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(cultureInfo),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app
+                .UseSwagger(c =>
+                {
+                    string prefix = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.SwaggerPathPrefixToInsert)];
+                    //change the path to include prefix
+                    c.RouteTemplate = (prefix.StartsWith("/", StringComparison.InvariantCulture) ? prefix.Remove(0, 1) : prefix) + "/swagger/{documentName}/swagger.json";
+                }).UseSwaggerUI(
+                options =>
+                {
+                    // Set the Swagger UI browser document title.
+                    options.DocumentTitle = typeof(Startup)
+                        .Assembly
+                        .GetCustomAttribute<AssemblyProductAttribute>()
+                        .Product;
+                    // Set the Swagger UI prefix
+                    // if behind proxy we might need to insert prefix
+                    string prefix = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.SwaggerPathPrefixToInsert)];
+                    if (string.IsNullOrEmpty(prefix) == false)
+                    {
+                        options.RoutePrefix =
+
+                            (prefix.StartsWith("/", StringComparison.InvariantCulture) ? prefix.Remove(0, 1) : prefix) + "/swagger";
+                        // Show the request duration in Swagger UI.
+                        options.DisplayRequestDuration();
+                    }
+
+                    var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
+                    foreach (ApiVersionDescription apiVersionDescription in provider
+                        .ApiVersionDescriptions
+                        .OrderByDescending(x => x.ApiVersion))
+                    {
+                        options.SwaggerEndpoint(
+                            $"{apiVersionDescription.GroupName}/swagger.json",
+                            $"Version {apiVersionDescription.ApiVersion}");
+                    }
+                });
         }
     }
 }
