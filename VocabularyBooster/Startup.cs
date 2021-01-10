@@ -20,10 +20,13 @@ namespace VocabularyBooster
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             this.Configuration = configuration;
+            this.HostingEnvironment = hostingEnvironment;
         }
+
+        public IWebHostEnvironment HostingEnvironment { get; }
 
         public IConfiguration Configuration { get; }
 
@@ -43,14 +46,14 @@ namespace VocabularyBooster
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddCustomSwagger(this.Configuration)
+            services
                 .AddCustomApiVersioning()
                 .AddVersionedApiExplorer(x =>
                 {
                     x.GroupNameFormat = "'v'VVV";
                     x.SubstituteApiVersionInUrl = true;
                 });
-
+            this.AddOptionalServices(services);
             // autofac setup
             var builder = new ContainerBuilder();
             builder.Populate(services);
@@ -97,6 +100,27 @@ namespace VocabularyBooster
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            this.ConfigureOptionalServices(app, env);
+        }
+
+        protected virtual void SetupDb(IServiceCollection services)
+        {
+            services.AddSingleton<GraphDbContext>();
+        }
+
+        protected virtual void RegisterServices(ContainerBuilder builder)
+        {
+            // project service registrations with autofac
+            builder.AddProjectServices();
+        }
+
+        protected virtual void AddOptionalServices(IServiceCollection services)
+        {
+            services.AddCustomSwagger();
+        }
+
+        protected virtual void ConfigureOptionalServices(IApplicationBuilder app, IWebHostEnvironment env)
+        {
             var enabledSpa = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.EnabledSpa)] == "True";
             if (enabledSpa)
             {
@@ -113,22 +137,6 @@ namespace VocabularyBooster
                 });
             }
 
-            this.ConfigureOptionalServices(app);
-        }
-
-        protected virtual void SetupDb(IServiceCollection services)
-        {
-            services.AddSingleton<GraphDbContext>();
-        }
-
-        protected virtual void RegisterServices(ContainerBuilder builder)
-        {
-            // project service registrations with autofac
-            builder.AddProjectServices();
-        }
-
-        protected virtual void ConfigureOptionalServices(IApplicationBuilder app)
-        {
             // set default request culture
             var cultureInfo = new CultureInfo("en");
             var supportedCultures = new[]
@@ -150,9 +158,8 @@ namespace VocabularyBooster
             app
                 .UseSwagger(c =>
                 {
-                    string prefix = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.SwaggerPathPrefixToInsert)];
                     //change the path to include prefix
-                    c.RouteTemplate = (prefix.StartsWith("/", StringComparison.InvariantCulture) ? prefix.Remove(0, 1) : prefix) + "/swagger/{documentName}/swagger.json";
+                    c.RouteTemplate = CommonRoute.BaseApiRoute + "/swagger/{documentName}/swagger.json";
                 }).UseSwaggerUI(
                 options =>
                 {
@@ -161,17 +168,10 @@ namespace VocabularyBooster
                         .Assembly
                         .GetCustomAttribute<AssemblyProductAttribute>()
                         .Product;
-                    // Set the Swagger UI prefix
-                    // if behind proxy we might need to insert prefix
-                    string prefix = this.Configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.SwaggerPathPrefixToInsert)];
-                    if (string.IsNullOrEmpty(prefix) == false)
-                    {
-                        options.RoutePrefix =
 
-                            (prefix.StartsWith("/", StringComparison.InvariantCulture) ? prefix.Remove(0, 1) : prefix) + "/swagger";
-                        // Show the request duration in Swagger UI.
-                        options.DisplayRequestDuration();
-                    }
+                    options.RoutePrefix = CommonRoute.BaseApiRoute + "/swagger";
+                    // Show the request duration in Swagger UI.
+                    options.DisplayRequestDuration();
 
                     var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
                     foreach (ApiVersionDescription apiVersionDescription in provider

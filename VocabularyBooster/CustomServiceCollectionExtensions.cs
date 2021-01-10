@@ -30,7 +30,7 @@ namespace VocabularyBooster
         /// <summary>
         ///     Adds Swagger services and configures the Swagger services.
         /// </summary>
-        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
         {
             return services.AddSwaggerGen(
                 options =>
@@ -48,8 +48,6 @@ namespace VocabularyBooster
 
                     options.OperationFilter<ApiVersionOperationFilter>();
 
-                    // if behind proxy we might need to insert prefix
-                    // string prefix = configuration.GetSection(nameof(ApplicationSettings))[nameof(ApplicationSettings.SwaggerPathPrefixToInsert)];
                     options.DocumentFilter<PathPrefixInsertDocumentFilter>(string.Empty);
 
                     var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();

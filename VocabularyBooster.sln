@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster", "VocabularyBooster.csproj", "{98C15090-7B4E-422C-BE29-B43FE3200DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster", "VocabularyBooster\VocabularyBooster.csproj", "{98C15090-7B4E-422C-BE29-B43FE3200DE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.Core", "..\VocabularyBooster.Core\VocabularyBooster.Core.csproj", "{7030EA7A-0C37-463A-9554-E82E61C20FE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Core", "VocabularyBooster.Core\VocabularyBooster.Core.csproj", "{7030EA7A-0C37-463A-9554-E82E61C20FE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.Data.Graph", "..\VocabularyBooster.Data.Graph\VocabularyBooster.Data.Graph.csproj", "{7CA92D07-D5D8-43A7-9D20-5B8FE55097D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Data.Graph", "VocabularyBooster.Data.Graph\VocabularyBooster.Data.Graph.csproj", "{7CA92D07-D5D8-43A7-9D20-5B8FE55097D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.Service", "..\VocabularyBooster.Service\VocabularyBooster.Service.csproj", "{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Service", "VocabularyBooster.Service\VocabularyBooster.Service.csproj", "{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.Test", "VocabularyBooster.Test\VocabularyBooster.Test.csproj", "{F5BBA455-F952-4CFA-96BC-A86824FF01E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

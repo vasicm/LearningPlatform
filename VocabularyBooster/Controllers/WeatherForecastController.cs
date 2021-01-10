@@ -10,7 +10,7 @@ using VocabularyBooster.Service;
 
 namespace VocabularyBooster.Controllers
 {
-    [Route("[controller]")]
+    [Route(CommonRoute.BaseApiRoute + "/v{api-version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
     public class WeatherForecastController : ControllerBase
@@ -42,14 +42,6 @@ namespace VocabularyBooster.Controllers
         [SwaggerOperation(OperationId = nameof(Get))]
         public IEnumerable<WeatherForecast> Get()
         {
-            this.wordService.AddOrUpdateWord(new Word()
-            {
-                Expression = "Expression1",
-                Definition = "Definition1"
-            }).Wait();
-
-            var word = this.wordService.GetWord("Expression1").Result;
-
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

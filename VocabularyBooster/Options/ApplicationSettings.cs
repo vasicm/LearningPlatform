@@ -7,8 +7,6 @@ namespace VocabularyBooster.Options
 {
     public class ApplicationSettings
     {
-        public string SwaggerPathPrefixToInsert { get; set; }
-
         public bool EnabledSpa { get; set; }
     }
 }
