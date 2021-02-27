@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VocabularyBooster.Data.Graph;
+using VocabularyBooster.FlashcardsService.Interface;
 using VocabularyBooster.Service;
+using VocabularyBooster.ServiceClient.Anki;
 
 namespace VocabularyBooster.Test
 {
@@ -24,6 +26,7 @@ namespace VocabularyBooster.Test
         {
             builder.RegisterType<WordService>().As<IWordService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<AnkiFlashcardService>().As<IFlashcardService>();
         }
 
         protected override void ConfigureOptionalServices(IApplicationBuilder app, IWebHostEnvironment env)

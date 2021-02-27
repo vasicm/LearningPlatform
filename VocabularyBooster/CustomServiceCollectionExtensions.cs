@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using VocabularyBooster.Data.Graph;
 using VocabularyBooster.Options;
+using VocabularyBooster.ServiceClient.Anki;
 
 namespace VocabularyBooster
 {
@@ -24,7 +25,9 @@ namespace VocabularyBooster
         {
             return services
                 .Configure<GraphDbOptions>(configuration.GetSection(nameof(ApplicationOptions.GraphDbOptions)))
-                .AddSingleton(x => x.GetRequiredService<IOptions<GraphDbOptions>>().Value);
+                .AddSingleton(x => x.GetRequiredService<IOptions<GraphDbOptions>>().Value)
+                .Configure<AnkiApiOptions>(configuration.GetSection(nameof(ApplicationOptions.AnkiApiOptions)))
+                .AddSingleton(x => x.GetRequiredService<IOptions<AnkiApiOptions>>().Value);
         }
 
         /// <summary>

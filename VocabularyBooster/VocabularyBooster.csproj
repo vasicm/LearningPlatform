@@ -68,6 +68,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\VocabularyBooster.Core\VocabularyBooster.Core.csproj" />
 	  <ProjectReference Include="..\VocabularyBooster.Data.Graph\VocabularyBooster.Data.Graph.csproj" />
+	  <ProjectReference Include="..\VocabularyBooster.ServiceClient.Anki\VocabularyBooster.ServiceClient.Anki.csproj" />
 	  <ProjectReference Include="..\VocabularyBooster.Service\VocabularyBooster.Service.csproj" />
 	</ItemGroup>
 

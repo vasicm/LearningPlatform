@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Serialization;
 
-namespace VocabularyBooster.Data.Graph.Helper
+namespace VocabularyBooster.Core
 {
     public class FirstCharacterLowercaseContractResolver : DefaultContractResolver
     {

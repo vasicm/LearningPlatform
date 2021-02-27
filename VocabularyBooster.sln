@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Data.Grap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Service", "VocabularyBooster.Service\VocabularyBooster.Service.csproj", "{C5AE5078-826E-45E6-AB5B-E7FC9B3E11C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.Test", "VocabularyBooster.Test\VocabularyBooster.Test.csproj", "{F5BBA455-F952-4CFA-96BC-A86824FF01E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Test", "VocabularyBooster.Test\VocabularyBooster.Test.csproj", "{F5BBA455-F952-4CFA-96BC-A86824FF01E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.ServiceClient.Anki", "VocabularyBooster.ServiceClient.Anki\VocabularyBooster.ServiceClient.Anki.csproj", "{66E51F05-C285-4603-89A0-23533900727D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.FlashcardsService.Interface", "VocabularyBooster.FlashcardsService.Interface\VocabularyBooster.FlashcardsService.Interface.csproj", "{CE967585-0868-4269-AFD3-67030E918950}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5BBA455-F952-4CFA-96BC-A86824FF01E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E51F05-C285-4603-89A0-23533900727D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E51F05-C285-4603-89A0-23533900727D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E51F05-C285-4603-89A0-23533900727D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E51F05-C285-4603-89A0-23533900727D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE967585-0868-4269-AFD3-67030E918950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE967585-0868-4269-AFD3-67030E918950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE967585-0868-4269-AFD3-67030E918950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE967585-0868-4269-AFD3-67030E918950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
