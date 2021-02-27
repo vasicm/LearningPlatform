@@ -21,10 +21,6 @@ namespace VocabularyBooster.Test.Integration
             this.fixture = fixture;
             this.wordService = ServiceProviderAccessor.ServiceProvider.GetService<IWordService>();
             this.userService = ServiceProviderAccessor.ServiceProvider.GetService<IUserService>();
-
-            // ServiceProviderAccessor.ServiceProvider
-            //     .GetService<GraphDbContext>()
-            //     .WriteTransaction(new Dictionary<string, object>(), "match (n) detach delete n").Wait();
         }
 
         [Fact]

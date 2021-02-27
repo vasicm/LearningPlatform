@@ -18,7 +18,7 @@
 
         public Item BrTranscription { get; set; }
 
-        public Item Item { get; set; }
+        public Item AmTranscription { get; set; }
 
         public Item AmBrTranscription { get; set; }
     }

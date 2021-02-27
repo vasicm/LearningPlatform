@@ -27,6 +27,7 @@ namespace VocabularyBooster.Test
             builder.RegisterType<WordService>().As<IWordService>();
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<AnkiFlashcardService>().As<IFlashcardService>();
+            builder.RegisterType<CardService>().As<ICardService>();
         }
 
         protected override void ConfigureOptionalServices(IApplicationBuilder app, IWebHostEnvironment env)

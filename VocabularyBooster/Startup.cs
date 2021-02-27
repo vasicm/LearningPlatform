@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VocabularyBooster.Data.Graph;
+using VocabularyBooster.Mapping;
 using VocabularyBooster.Options;
 
 namespace VocabularyBooster
@@ -67,6 +69,7 @@ namespace VocabularyBooster
         {
             // Register your own things directly with Autofac
             this.RegisterServices(builder);
+            builder.Register(ctx => AutoMapperConfig.CreateMapping()).As<IMapper>().SingleInstance();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

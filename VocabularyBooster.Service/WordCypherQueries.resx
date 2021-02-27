@@ -174,8 +174,45 @@
 
 	<data name="GetUserByEmail" xml:space="preserve">
 		<value>
-			MATCH (user: User {uuid: $email})
+			MATCH (user: User {email: $email})
 			RETURN user{.*} as user
+		</value>
+	</data>
+
+	<data name="AddOrUpdateCard" xml:space="preserve">
+		<value>
+			UNWIND {cards} as CardParam 
+			MERGE (card: Card {cardId: CardParam.cardId})
+			ON CREATE SET
+				card = CardParam,
+				card.uuid = randomUUID()
+			ON MATCH SET
+				card = CardParam
+
+			MERGE (word:Word {expression: CardParam.keyword})
+			MERGE (card)-[r:HAS_WORD]->(word)
+
+			MERGE (user: User {email: $userEmail})
+			MERGE (user)-[hasCard:HAS_CARD]->(card)
+			SET
+				hasCard.factor = CardParam.factor,
+				hasCard.interval = CardParam.interval,
+				hasCard.note = CardParam.note,
+				hasCard.type = CardParam.type,
+				hasCard.queue = CardParam.queue,
+				hasCard.due = CardParam.due,
+				hasCard.reps = CardParam.reps,
+				hasCard.lapses = CardParam.lapses,
+				hasCard.left = CardParam.left
+
+			RETURN collect(card.uuid) AS cardUuidList, true as res
+		</value>
+	</data>
+
+	<data name="GetCardByCardId" xml:space="preserve">
+		<value>
+			MATCH (card: Card {cardId: $cardId})
+			RETURN card{.*} as card
 		</value>
 	</data>
 </root>

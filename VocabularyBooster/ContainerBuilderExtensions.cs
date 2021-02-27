@@ -16,6 +16,7 @@ namespace VocabularyBooster
             builder.RegisterType<WordService>().As<IWordService>();
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<AnkiFlashcardService>().As<IFlashcardService>();
+            builder.RegisterType<CardService>().As<ICardService>();
         }
     }
 }

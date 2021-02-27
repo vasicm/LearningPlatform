@@ -79,6 +79,33 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///			UNWIND {cards} as CardParam 
+        ///			MERGE (card: Card {cardId: CardParam.cardId})
+        ///			ON CREATE SET
+        ///				card = CardParam,
+        ///				card.uuid = randomUUID()
+        ///			ON MATCH SET
+        ///				card = CardParam
+        ///
+        ///			MERGE (word:Word {expression: CardParam.keyword})
+        ///			MERGE (card)-[r:HAS_WORD]-&gt;(word)
+        ///
+        ///			MERGE (user: User {email: $userEmail})
+        ///			MERGE (user)-[hasCard:HAS_CARD]-&gt;(card)
+        ///			SET
+        ///				hasCard.factor = CardParam.factor,
+        ///				hasCard.interval = CardParam.interval,
+        ///				hasCard.note = CardParam.note,
+        ///				ha [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AddOrUpdateCard {
+            get {
+                return ResourceManager.GetString("AddOrUpdateCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///			UNWIND $text as nText
         ///			CREATE (newText: Text)
         ///				SET newText = nText,
@@ -119,6 +146,18 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///			MATCH (card: Card {cardId: $cardId})
+        ///			RETURN card{.*} as card
+        ///		.
+        /// </summary>
+        internal static string GetCardByCardId {
+            get {
+                return ResourceManager.GetString("GetCardByCardId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///			MATCH (text: Text {uuid: $textUuid})
         ///			return text as Text
         ///		.
@@ -143,7 +182,7 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///			MATCH (user: User {uuid: $email})
+        ///			MATCH (user: User {email: $email})
         ///			RETURN user{.*} as user
         ///		.
         /// </summary>

@@ -32,7 +32,7 @@ namespace VocabularyBooster.Test.Integration
         [Fact]
         public async Task GetCardsInfoTest()
         {
-            var cardIdList = await this.flashcardService.FindCards("\"Keyword:term*\"");
+            var cardIdList = await this.flashcardService.FindCards("\"tag:test\"");
             var flashCardList = await this.flashcardService.GetCardsInfo(cardIdList);
             flashCardList.Count.ShouldBe(4);
         }
