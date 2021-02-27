@@ -7,6 +7,6 @@ namespace VocabularyBooster
 {
     public static class CommonRoute
     {
-        public const string BaseApiRoute = "vocabulary-builder";
+        public const string BaseApiRoute = "api";
     }
 }

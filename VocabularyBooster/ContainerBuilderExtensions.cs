@@ -12,6 +12,7 @@ namespace VocabularyBooster
         public static void AddProjectServices(this ContainerBuilder builder)
         {
             builder.RegisterType<WordService>().As<IWordService>();
+            builder.RegisterType<UserService>().As<IUserService>();
         }
     }
 }

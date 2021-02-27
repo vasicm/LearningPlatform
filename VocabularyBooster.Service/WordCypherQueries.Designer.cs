@@ -63,7 +63,7 @@ namespace VocabularyBooster.Service {
         /// <summary>
         ///   Looks up a localized string similar to 
         ///			UNWIND {word} as WordParam 
-        ///			MERGE (newWord: Word {expression: WordParam.expression})
+        ///			MERGE (newWord: Word {number: WordParam.number})
         ///			ON CREATE SET
         ///				newWord = WordParam,
         ///				newWord.uuid = randomUUID()
@@ -79,6 +79,82 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///			UNWIND $text as nText
+        ///			CREATE (newText: Text)
+        ///				SET newText = nText,
+        ///					newText.uuid = randomUUID()
+        ///			WITH newText
+        ///			WITH newText, apoc.text.split(newText.content, &quot;[ |;|!|?|.|:]&quot;) as newExpressionList
+        ///			UNWIND newExpressionList as newExpression
+        ///			MERGE (w:Word {expression: newExpression})
+        ///			MERGE (newText)-[r:HAS_WORD]-&gt;(w)
+        ///				ON CREATE SET
+        ///    				r.count = 1
+        ///				ON MATCH SET
+        ///    				r.count = r.count + 1
+        ///			RETURN DISTINCT newText.uuid as textUuid
+        ///		.
+        /// </summary>
+        internal static string AddText {
+            get {
+                return ResourceManager.GetString("AddText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			UNWIND $user as user
+        ///			CREATE (newUser: User)
+        ///				SET newUser = user,
+        ///					newUser.uuid = randomUUID(),
+        ///					newUser.created = timestamp()
+        ///			RETURN newUser.uuid as userUuid
+        ///		.
+        /// </summary>
+        internal static string AddUser {
+            get {
+                return ResourceManager.GetString("AddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (text: Text {uuid: $textUuid})
+        ///			return text as Text
+        ///		.
+        /// </summary>
+        internal static string GetText {
+            get {
+                return ResourceManager.GetString("GetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (user: User {uuid: $userUuid})
+        ///			RETURN user{.*} as user
+        ///		.
+        /// </summary>
+        internal static string GetUser {
+            get {
+                return ResourceManager.GetString("GetUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (user: User {uuid: $email})
+        ///			RETURN user{.*} as user
+        ///		.
+        /// </summary>
+        internal static string GetUserByEmail {
+            get {
+                return ResourceManager.GetString("GetUserByEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///			MATCH (word: Word {expression: $expression})
         ///			return word as Word
         ///		.
@@ -86,6 +162,22 @@ namespace VocabularyBooster.Service {
         internal static string GetWord {
             get {
                 return ResourceManager.GetString("GetWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (user: User {uuid:$userUuid})
+        ///			MATCH (text: Text {uuid:$textUuid})
+        ///			WITH user, text
+        ///			MATCH (text)-[:HAS_WORD]-&gt;(word: Word)
+        ///			MERGE (user)-[:LEARNED]-&gt;(word)
+        ///			RETURN DISTINCT user.uuid
+        ///		.
+        /// </summary>
+        internal static string MakeTextLearned {
+            get {
+                return ResourceManager.GetString("MakeTextLearned", resourceCulture);
             }
         }
     }

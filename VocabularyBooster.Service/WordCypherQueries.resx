@@ -102,7 +102,7 @@
 	<data name="AddOrUpdate" xml:space="preserve">
 		<value>
 			UNWIND {word} as WordParam 
-			MERGE (newWord: Word {expression: WordParam.expression})
+			MERGE (newWord: Word {number: WordParam.number})
 			ON CREATE SET
 				newWord = WordParam,
 				newWord.uuid = randomUUID()
@@ -114,6 +114,68 @@
 		<value>
 			MATCH (word: Word {expression: $expression})
 			return word as Word
+		</value>
+	</data>
+
+	<data name="AddText" xml:space="preserve">
+		<value>
+			UNWIND $text as nText
+			CREATE (newText: Text)
+				SET newText = nText,
+					newText.uuid = randomUUID()
+			WITH newText
+			WITH newText, apoc.text.split(newText.content, "[ |;|!|?|.|:]") as newExpressionList
+			UNWIND newExpressionList as newExpression
+			MERGE (w:Word {expression: newExpression})
+			MERGE (newText)-[r:HAS_WORD]->(w)
+				ON CREATE SET
+    				r.count = 1
+				ON MATCH SET
+    				r.count = r.count + 1
+			RETURN DISTINCT newText.uuid as textUuid
+		</value>
+	</data>
+
+	<data name="GetText" xml:space="preserve">
+		<value>
+			MATCH (text: Text {uuid: $textUuid})
+			return text as Text
+		</value>
+	</data>
+
+	<data name="MakeTextLearned" xml:space="preserve">
+		<value>
+			MATCH (user: User {uuid:$userUuid})
+			MATCH (text: Text {uuid:$textUuid})
+			WITH user, text
+			MATCH (text)-[:HAS_WORD]->(word: Word)
+			MERGE (user)-[:LEARNED]->(word)
+			RETURN DISTINCT user.uuid
+		</value>
+	</data>
+
+	<data name="AddUser" xml:space="preserve">
+		<value>
+			UNWIND $user as user
+			CREATE (newUser: User)
+				SET newUser = user,
+					newUser.uuid = randomUUID(),
+					newUser.created = timestamp()
+			RETURN newUser.uuid as userUuid
+		</value>
+	</data>
+
+	<data name="GetUser" xml:space="preserve">
+		<value>
+			MATCH (user: User {uuid: $userUuid})
+			RETURN user{.*} as user
+		</value>
+	</data>
+
+	<data name="GetUserByEmail" xml:space="preserve">
+		<value>
+			MATCH (user: User {uuid: $email})
+			RETURN user{.*} as user
 		</value>
 	</data>
 </root>

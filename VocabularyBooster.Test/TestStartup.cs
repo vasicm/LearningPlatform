@@ -23,6 +23,7 @@ namespace VocabularyBooster.Test
         protected override void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<WordService>().As<IWordService>();
+            builder.RegisterType<UserService>().As<IUserService>();
         }
 
         protected override void ConfigureOptionalServices(IApplicationBuilder app, IWebHostEnvironment env)

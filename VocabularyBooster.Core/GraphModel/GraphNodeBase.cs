@@ -6,6 +6,6 @@ namespace VocabularyBooster.Core.GraphModel
     {
         public Guid Uuid { get; set; }
 
-        public string Created { get; set; }
+        public long Created { get; set; }
     }
 }
