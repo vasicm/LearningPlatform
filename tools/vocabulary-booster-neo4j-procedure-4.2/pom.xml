@@ -105,5 +105,15 @@
         </executions>
       </plugin>
     </plugins>
+      <resources>
+        <resource>
+          <targetPath>main/resources</targetPath>
+          <filtering>false</filtering>
+          <directory>./src/main/resources</directory>
+          <includes>
+            <include>lemma_lu.csv</include>
+          </includes>
+        </resource>
+    </resources>
   </build>
 </project>
