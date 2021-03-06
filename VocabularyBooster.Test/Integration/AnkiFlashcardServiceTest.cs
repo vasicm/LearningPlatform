@@ -26,7 +26,7 @@ namespace VocabularyBooster.Test.Integration
         public async Task FindCardsTest()
         {
             var res = await this.flashcardService.FindCards("\"deck:SSE 4000 Essential English Words by Paul Nation::book 6\"");
-            res.Count.ShouldBe(600);
+            res.Count.ShouldBe(602);
         }
 
         [Fact]

@@ -62,7 +62,7 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///			UNWIND {word} as WordParam 
+        ///			UNWIND $word as WordParam 
         ///			MERGE (newWord: Word {number: WordParam.number})
         ///			ON CREATE SET
         ///				newWord = WordParam,
@@ -79,7 +79,7 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///			UNWIND {cards} as CardParam 
+        ///			UNWIND $cards as CardParam 
         ///			MERGE (card: Card {cardId: CardParam.cardId})
         ///			ON CREATE SET
         ///				card = CardParam,
@@ -96,7 +96,7 @@ namespace VocabularyBooster.Service {
         ///				hasCard.factor = CardParam.factor,
         ///				hasCard.interval = CardParam.interval,
         ///				hasCard.note = CardParam.note,
-        ///				ha [rest of string was truncated]&quot;;.
+        ///				has [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AddOrUpdateCard {
             get {

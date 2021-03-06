@@ -101,7 +101,7 @@
 
 	<data name="AddOrUpdate" xml:space="preserve">
 		<value>
-			UNWIND {word} as WordParam 
+			UNWIND $word as WordParam 
 			MERGE (newWord: Word {number: WordParam.number})
 			ON CREATE SET
 				newWord = WordParam,
@@ -181,7 +181,7 @@
 
 	<data name="AddOrUpdateCard" xml:space="preserve">
 		<value>
-			UNWIND {cards} as CardParam 
+			UNWIND $cards as CardParam 
 			MERGE (card: Card {cardId: CardParam.cardId})
 			ON CREATE SET
 				card = CardParam,
