@@ -37,6 +37,10 @@ public class DatabaseServiceHelper {
 
 		if(relationship == null) {
 			relationship = startNode.createRelationshipTo(endNode, relationshipType);
+			relationship.setProperty("count", 1L);
+		} else {
+			var count = (Long)relationship.getProperty("count");
+			relationship.setProperty("count", count + 1L);
 		}
 
 		// The solution in a manner of functional programming

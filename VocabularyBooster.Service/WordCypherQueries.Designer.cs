@@ -107,18 +107,11 @@ namespace VocabularyBooster.Service {
         /// <summary>
         ///   Looks up a localized string similar to 
         ///			UNWIND $text as nText
-        ///			CREATE (newText: Text)
-        ///				SET newText = nText,
-        ///					newText.uuid = randomUUID()
-        ///			WITH newText
-        ///			WITH newText, apoc.text.split(newText.content, &quot;[ |;|!|?|.|:]&quot;) as newExpressionList
-        ///			UNWIND newExpressionList as newExpression
-        ///			MERGE (w:Word {expression: newExpression})
-        ///			MERGE (newText)-[r:HAS_WORD]-&gt;(w)
-        ///				ON CREATE SET
-        ///    				r.count = 1
-        ///				ON MATCH SET
-        ///    				r.count = r.count + 1
+        ///			call nlp.lemmatize_text(nText.content) YIELD uuid, id, success
+        ///			WITH id, nText
+        ///			MATCH (newText: Text)
+        ///			WHERE id(newText) = id
+        ///			SET newText = nText
         ///			RETURN DISTINCT newText.uuid as textUuid
         ///		.
         /// </summary>
@@ -201,6 +194,18 @@ namespace VocabularyBooster.Service {
         internal static string GetWord {
             get {
                 return ResourceManager.GetString("GetWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (text: Text {uuid: $textUuid})-[:HAS_WORD]-&gt;(word:Word)
+        ///			return word as Word
+        ///		.
+        /// </summary>
+        internal static string GetWordListFromText {
+            get {
+                return ResourceManager.GetString("GetWordListFromText", resourceCulture);
             }
         }
         

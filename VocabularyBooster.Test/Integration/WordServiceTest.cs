@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
@@ -45,10 +46,13 @@ namespace VocabularyBooster.Test.Integration
             var text = new Text()
             {
                 // Text after word Lemmatize
-                Content = "if you have to sum up george washington 's life in one word , that word would have to be unforgettable . george 's story be one of travel and adventure , full of risk and , most of all , full of glory "
+                Content = @"If you had to sum up George Washington's life in one word, that word would have to be unforgettable. George's story is one of travel and adventure, full of risks and, most of all, full of glory."
             };
 
-            await this.wordService.AddText(text);
+            var textUuid = await this.wordService.AddText(text);
+            var words = await this.wordService.GetWordListFromText(textUuid);
+
+            // words.Where(w => w.Expression == "word")
         }
 
         [Fact]

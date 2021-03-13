@@ -10,6 +10,10 @@ namespace VocabularyBooster.Service
     {
         Task<Guid> AddText(Text text);
 
+        Task<Text> GetText(Guid textUuid);
+
+        Task<List<Word>> GetWordListFromText(Guid textUuid);
+
         Task AddOrUpdateWord(Word word);
 
         Task<Word> GetWord(string expression);

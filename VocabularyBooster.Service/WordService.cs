@@ -36,6 +36,14 @@ namespace VocabularyBooster.Service
                 c => c.AsNodeTo<Text>("Text"));
         }
 
+        public async Task<List<Word>> GetWordListFromText(Guid textUuid)
+        {
+            return await this.graphDbContext.ReadTransaction(
+                new ParameterDictionary().AddParameter("textUuid", textUuid.ToString()),
+                WordCypherQueries.GetWordListFromText,
+                c => c.AsNodeTo<Word>(nameof(Word)));
+        }
+
         public async Task AddOrUpdateWord(Word word)
         {
             await this.graphDbContext.WriteTransaction(

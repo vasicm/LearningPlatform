@@ -120,18 +120,11 @@
 	<data name="AddText" xml:space="preserve">
 		<value>
 			UNWIND $text as nText
-			CREATE (newText: Text)
-				SET newText = nText,
-					newText.uuid = randomUUID()
-			WITH newText
-			WITH newText, apoc.text.split(newText.content, "[ |;|!|?|.|:]") as newExpressionList
-			UNWIND newExpressionList as newExpression
-			MERGE (w:Word {expression: newExpression})
-			MERGE (newText)-[r:HAS_WORD]->(w)
-				ON CREATE SET
-    				r.count = 1
-				ON MATCH SET
-    				r.count = r.count + 1
+			call nlp.lemmatize_text(nText.content) YIELD uuid, id, success
+			WITH id, nText
+			MATCH (newText: Text)
+			WHERE id(newText) = id
+			SET newText = nText
 			RETURN DISTINCT newText.uuid as textUuid
 		</value>
 	</data>
@@ -140,6 +133,13 @@
 		<value>
 			MATCH (text: Text {uuid: $textUuid})
 			return text as Text
+		</value>
+	</data>
+
+	<data name="GetWordListFromText" xml:space="preserve">
+		<value>
+			MATCH (text: Text {uuid: $textUuid})-[:HAS_WORD]->(word:Word)
+			return word as Word
 		</value>
 	</data>
 

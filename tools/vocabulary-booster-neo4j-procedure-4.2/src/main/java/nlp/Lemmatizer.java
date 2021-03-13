@@ -80,7 +80,6 @@ public class Lemmatizer {
     @Procedure(value = "nlp.lemmatize_text", mode = Mode.WRITE)
     @Description("")
     public Stream<Output> lemmatizeText(@Name("text") final String text) {
-        final Long nodeId = -1L;
         try (Transaction transaction = db.beginTx()) {
             final Node textNode = transaction.createNode(TEXT);
             textNode.setProperty("uuid", UUID.randomUUID().toString());
@@ -92,15 +91,18 @@ public class Lemmatizer {
                 final ArrayList<String> lemmatizedWord = this.lemmatizeWord(word.trim());
 
                 for (final String lemmWord : lemmatizedWord) {
-                    final Node lemmWordNode = DatabaseServiceHelper.getOrCreateNode(transaction, WORD, "expression", lemmWord);
-                    DatabaseServiceHelper.addRelationshipIfNotExist(transaction, textNode, lemmWordNode, HASWORD);
+                    if(!lemmWord.isEmpty()) {
+                        final Node lemmWordNode = DatabaseServiceHelper.getOrCreateNode(transaction, WORD, "expression", lemmWord);
+                        DatabaseServiceHelper.addRelationshipIfNotExist(transaction, textNode, lemmWordNode, HASWORD);
+                    }
                 }
             }
 
-            transaction.commit();
-        }
+            var returnStream = Stream.of(new Output(textNode.getProperty("uuid").toString(), textNode.getId(), true));
 
-        return Stream.of(new Output(null, -1, true));
+            transaction.commit();
+            return returnStream;
+        }
     }
 
     private ArrayList<String> lemmatizeWord(final String word) {
