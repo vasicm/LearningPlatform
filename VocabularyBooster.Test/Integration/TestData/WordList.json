@@ -1,0 +1,93 @@
+[
+  {
+    "Expression": "knowledge",
+    "Sense": [
+      {
+        "Definition": "the information, skills, and understanding that you have got through learning or experience",
+        "GrammaticalCategories": "noun",
+        "Example": "You don’t need to have any special knowledge to do this job.",
+        "CEFR": "B1 (43-50)",
+        "Thesaurus": "",
+        "Callocations": "knowledge of sth | knowledge about sth | use your knowledge | scientific knowledge | be common knowledge | increase your knowledge | personal knowledge | technical knowledge | detailed knowledge | demonstrate your knowledge | background knowledge | intimate knowledge | expert knowledge | basic knowledge | specialist knowledge | improve your knowledge | test sb’s knowledge | thorough knowledge | show your knowledge | extensive knowledge | inside knowledge | expand your knowledge | have some knowledge of sth | first-hand knowledge | in-depth knowledge | sb’s breadth of knowledge | broaden your knowledge | considerable knowledge | a thirst for knowledge | vast knowledge | get knowledge",
+        "Topic": "Knowledge or lack of knowledge"
+      },
+      {
+        "Definition": "the information, skills, and understanding that you have got through learning or experience",
+        "GrammaticalCategories": "noun",
+        "Example": "You don’t need to have any special knowledge to do this job.",
+        "CEFR": "B1 (43-50)",
+        "Thesaurus": "",
+        "Callocations": "knowledge of sth | knowledge about sth | use your knowledge | scientific knowledge | be common knowledge | increase your knowledge | personal knowledge | technical knowledge | detailed knowledge | demonstrate your knowledge | background knowledge | intimate knowledge | expert knowledge | basic knowledge | specialist knowledge | improve your knowledge | test sb’s knowledge | thorough knowledge | show your knowledge | extensive knowledge | inside knowledge | expand your knowledge | have some knowledge of sth | first-hand knowledge | in-depth knowledge | sb’s breadth of knowledge | broaden your knowledge | considerable knowledge | a thirst for knowledge | vast knowledge | get knowledge",
+        "Topic": "Knowledge or lack of knowledge"
+      },
+      {
+        "Definition": "when you know about a particular situation or event, or the information you have about it",
+        "GrammaticalCategories": "noun",
+        "Example": "Evans denied all knowledge of the robbery.",
+        "CEFR": "B1+ (51-58)",
+        "Thesaurus": "",
+        "Callocations": "",
+        "Topic": "Knowledge or lack of knowledge"
+      }
+    ]
+  },
+  {
+    "Expression": "subject",
+    "Sense": [
+      {
+        "Definition": "a person or animal that is used in a test or experiment",
+        "GrammaticalCategories": "noun",
+        "Example": "Subjects for this experiment represented a good cross-section of the American population.",
+        "CEFR": "B2+ (67-75)",
+        "Thesaurus": "",
+        "Callocations": "",
+        "Topic": "Questionnaires | Scientific work"
+      },
+      {
+        "Definition": "someone who is from a country that has a king or queen",
+        "GrammaticalCategories": "noun",
+        "Example": "a British subject",
+        "CEFR": "B2+ (67-75)",
+        "Thesaurus": "",
+        "Callocations": "",
+        "Topic": "Social groups and titles"
+      },
+      {
+        "Definition": "something that you study at a school or university",
+        "GrammaticalCategories": "noun",
+        "Example": "‘What’s your favourite subject?’ ‘Science.’",
+        "CEFR": "A2 (30-35)",
+        "Thesaurus": "",
+        "Callocations": "study a subject | teach a subject | take a subject | a range of subjects | choose a subject | a science subject | do a subject | an academic subject | an arts subject | sb’s favourite subject | a compulsory subject | a vocational subject | an optional subject",
+        "Topic": "Subjects and courses"
+      },
+      {
+        "Definition": "something that you are talking or writing about",
+        "GrammaticalCategories": "noun",
+        "Example": "I don’t want to talk about the subject of death.",
+        "CEFR": "B1 (43-50)",
+        "Thesaurus": "",
+        "Callocations": "the subject of sth | on a subject | a subject area | the subject matter | change the subject | a range of subjects | deal with a subject | cover a subject | discuss a subject | broach a subject | raise a subject | a taboo subject | a complex subject | bring up a subject | a controversial subject | talk about a subject | a difficult subject | a sensitive subject | a subject of debate | a subject of discussion | an interesting subject | avoid a subject | drop a subject | a touchy subject | a fascinating subject | mention a subject | a subject of controversy | a subject for discussion | get sb off a subject | a delicate subject | touch on a subject | an emotive subject | a subject for debate | a subject of conversation | get onto a subject | a subject comes up | get back to a subject | keep off a subject | stay off a subject | wander off the subject",
+        "Topic": "Language related to books | Related to a subject"
+      },
+      {
+        "Definition": "the word that usually comes before the verb in a sentence and shows who is doing the action of the verb. In the sentence ‘Jean loves cats’, ‘Jean’ is the subject.",
+        "GrammaticalCategories": "noun",
+        "Example": "",
+        "CEFR": "B1+ (51-58)",
+        "Thesaurus": "",
+        "Callocations": "",
+        "Topic": "Grammar"
+      },
+      {
+        "Definition": "something that you study at a school or university",
+        "GrammaticalCategories": "noun",
+        "Example": "‘What’s your favourite subject?’ ‘Science.’",
+        "CEFR": "A2 (30-35)",
+        "Thesaurus": "",
+        "Callocations": "study a subject | teach a subject | take a subject | a range of subjects | choose a subject | a science subject | do a subject | an academic subject | an arts subject | sb’s favourite subject | a compulsory subject | a vocational subject | an optional subject",
+        "Topic": "Subjects and courses"
+      }
+    ]
+  }
+]

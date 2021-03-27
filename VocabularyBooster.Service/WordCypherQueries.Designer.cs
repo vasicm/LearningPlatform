@@ -63,13 +63,19 @@ namespace VocabularyBooster.Service {
         /// <summary>
         ///   Looks up a localized string similar to 
         ///			UNWIND $word as WordParam 
-        ///			MERGE (newWord: Word {number: WordParam.number})
+        ///			MERGE (newWord: Word {expression: WordParam.expression})
         ///			ON CREATE SET
-        ///				newWord = WordParam,
-        ///				newWord.uuid = randomUUID()
+        ///				newWord.uuid = randomUUID(),
+        ///				newWord.created = timestamp()
         ///			ON MATCH SET
-        ///				newWord = WordParam
-        ///		.
+        ///				newWord.modified = timestamp()
+        ///			WITH newWord, WordParam
+        ///			UNWIND WordParam.sense as sense
+        ///			MERGE (newSense: Sense {definition: sense.definition})
+        ///			ON CREATE SET
+        ///				newSense.definition = sense.definition,
+        ///				newSense.grammaticalCategories = sense.grammaticalCategories,
+        ///				newSense.example = se [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AddOrUpdate {
             get {
@@ -187,8 +193,9 @@ namespace VocabularyBooster.Service {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///			MATCH (word: Word {expression: $expression})
-        ///			return word as Word
+        ///			MATCH (word: Word {expression: $expression})-[:HAS_SENSE]-&gt;(sense: Sense)
+        ///			with word, collect(sense) as senses
+        ///			return {expression: word.expression, sense: senses} as word
         ///		.
         /// </summary>
         internal static string GetWord {

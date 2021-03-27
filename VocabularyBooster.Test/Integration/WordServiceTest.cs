@@ -6,6 +6,7 @@ using Shouldly;
 using VocabularyBooster.Core.GraphModel;
 using VocabularyBooster.Data.Graph;
 using VocabularyBooster.Service;
+using VocabularyBooster.Test.Common;
 using Xunit;
 
 namespace VocabularyBooster.Test.Integration
@@ -27,17 +28,13 @@ namespace VocabularyBooster.Test.Integration
         [Fact]
         public async Task AddOrUpdateWordTest()
         {
-            var word = new Word()
+            var wordList = Helper.Deserialize<List<Word>>("TestData.WordList.json");
+
+            foreach (var word in wordList)
             {
-                Number = 456,
-                Expression = "test",
-                Definition = "a set of questions or exercises for measuring your knowledge of a subject, or your skill"
-            };
-
-            await this.wordService.AddOrUpdateWord(word);
-
-            var returnedWord = await this.wordService.GetWord(word.Expression);
-            returnedWord.Definition.ShouldBe(word.Definition);
+                await this.wordService.AddOrUpdateWord(word);
+                var returnedWord = await this.wordService.GetWord(word.Expression);
+            }
         }
 
         [Fact]

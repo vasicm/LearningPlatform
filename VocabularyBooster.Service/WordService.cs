@@ -56,7 +56,7 @@ namespace VocabularyBooster.Service
             return await this.graphDbContext.ReadTransactionSingle(
                 new ParameterDictionary().AddParameter("expression", expression),
                 WordCypherQueries.GetWord,
-                c => c.AsNodeTo<Word>(nameof(Word)));
+                c => c.To<Word>("word"));
         }
 
         public async Task MakeTextLearned(Guid userUuid, Guid textUuid)
