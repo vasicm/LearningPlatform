@@ -142,6 +142,15 @@
 		</value>
 	</data>
 
+	<data name="SearchWord" xml:space="preserve">
+		<value>
+			MATCH (word: Word)-[:HAS_SENSE]->(sense: Sense)
+			WHERE word.expression =~ ".*" + $expression + ".*"
+			WITH word, collect(sense) as senses
+			RETURN {expression: word.expression, sense: senses} as word
+		</value>
+	</data>
+
 	<data name="AddText" xml:space="preserve">
 		<value>
 			UNWIND $text as nText
@@ -158,6 +167,14 @@
 		<value>
 			MATCH (text: Text {uuid: $textUuid})
 			return text as Text
+		</value>
+	</data>
+
+	<data name="SearchText" xml:space="preserve">
+		<value>
+			MATCH (text:Text)
+			WHERE text.content =~ ".*" + $phrase + ".*"
+			RETURN text{.*} as Text
 		</value>
 	</data>
 

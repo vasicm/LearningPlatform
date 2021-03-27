@@ -28,6 +28,14 @@ namespace VocabularyBooster.Service
                 result => Guid.Parse(result.To<string>("textUuid")));
         }
 
+        public async Task<List<Text>> SearchText(string phrase)
+        {
+            return await this.graphDbContext.ReadTransaction(
+                new ParameterDictionary().AddParameter("phrase", phrase),
+                WordCypherQueries.SearchText,
+                c => c.To<Text>("Text"));
+        }
+
         public async Task<Text> GetText(Guid textUuid)
         {
             return await this.graphDbContext.ReadTransactionSingle(
@@ -56,6 +64,14 @@ namespace VocabularyBooster.Service
             return await this.graphDbContext.ReadTransactionSingle(
                 new ParameterDictionary().AddParameter("expression", expression),
                 WordCypherQueries.GetWord,
+                c => c.To<Word>("word"));
+        }
+
+        public async Task<List<Word>> SearchWord(string expression)
+        {
+            return await this.graphDbContext.ReadTransaction(
+                new ParameterDictionary().AddParameter("expression", expression),
+                WordCypherQueries.SearchWord,
                 c => c.To<Word>("word"));
         }
 

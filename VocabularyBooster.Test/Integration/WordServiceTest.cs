@@ -49,6 +49,9 @@ namespace VocabularyBooster.Test.Integration
             var textUuid = await this.wordService.AddText(text);
             var words = await this.wordService.GetWordListFromText(textUuid);
 
+            var textList = await this.wordService.SearchText("full of risks and");
+            textList.Count.ShouldBe(1);
+            textList.First().Content.ShouldBe(text.Content);
             // words.Where(w => w.Expression == "word")
         }
 

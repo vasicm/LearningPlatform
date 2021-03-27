@@ -231,5 +231,32 @@ namespace VocabularyBooster.Service {
                 return ResourceManager.GetString("MakeTextLearned", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (text:Text)
+        ///			WHERE text.content =~ &quot;.*&quot; + $phrase + &quot;.*&quot;
+        ///			RETURN text{.*} as Text
+        ///		.
+        /// </summary>
+        internal static string SearchText {
+            get {
+                return ResourceManager.GetString("SearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///			MATCH (word: Word)-[:HAS_SENSE]-&gt;(sense: Sense)
+        ///			WHERE word.expression =~ &quot;.*&quot; + $expression + &quot;.*&quot;
+        ///			WITH word, collect(sense) as senses
+        ///			RETURN {expression: word.expression, sense: senses} as word
+        ///		.
+        /// </summary>
+        internal static string SearchWord {
+            get {
+                return ResourceManager.GetString("SearchWord", resourceCulture);
+            }
+        }
     }
 }
