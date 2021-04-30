@@ -11,6 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomeModule } from './pages/home/home.module';
 import { HomePageComponent } from './pages/home/home-page/home-page.component';
+import { DictionaryModule } from './pages/dictionary/dictionary.module';
+import { DictionaryPageComponent } from './pages/dictionary/dictionary-page/dictionary-page.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,13 @@ import { HomePageComponent } from './pages/home/home-page/home-page.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent, pathMatch: 'full' },
+      { path: 'dictionary', component: DictionaryPageComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ]),
-    HomeModule
+    HomeModule,
+    DictionaryModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

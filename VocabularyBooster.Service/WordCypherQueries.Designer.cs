@@ -249,7 +249,7 @@ namespace VocabularyBooster.Service {
         ///   Looks up a localized string similar to 
         ///			MATCH (word: Word)-[:HAS_SENSE]-&gt;(sense: Sense)
         ///			WHERE word.expression =~ &quot;.*&quot; + $expression + &quot;.*&quot;
-        ///			WITH word, collect(sense) as senses
+        ///			WITH word, collect(sense{.*}) as senses
         ///			RETURN {expression: word.expression, sense: senses} as word
         ///		.
         /// </summary>

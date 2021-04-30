@@ -26,8 +26,9 @@ namespace VocabularyBooster.Mapping
                 .ForMember(dest => dest.BrTranscription, opt => opt.MapFrom(src => src.Fields.BrTranscription.Value))
                 .ForMember(dest => dest.AmBrTranscription, opt => opt.MapFrom(src => src.Fields.AmBrTranscription.Value));
 
-            this.CreateMap<VocabularyBooster.Core.GraphModel.Text, VocabularyBooster.ViewModel.Text>(MemberList
-                .Destination);
+            this.CreateMap<VocabularyBooster.Core.GraphModel.Text, VocabularyBooster.ViewModel.Text>(MemberList.Destination);
+            this.CreateMap<VocabularyBooster.Core.GraphModel.Word, VocabularyBooster.ViewModel.Word>(MemberList.Destination);
+            this.CreateMap<VocabularyBooster.Core.GraphModel.Sense, VocabularyBooster.ViewModel.Sense>(MemberList.Destination);
         }
     }
 }

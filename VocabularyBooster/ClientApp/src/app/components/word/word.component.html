@@ -1,0 +1,37 @@
+<h3>{{word.expression}}</h3>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Definition</th>
+        <th scope="col">example</th>
+        <th scope="col">grammaticalCategories</th>
+        <!-- <th scope="col">thesaurus</th> -->
+        <!-- <th scope="col">callocations</th> -->
+        <th scope="col">cefr</th>
+        <th scope="col">topic</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sense of word.sense">
+        <td>{{sense.definition}}</td>
+        <td>{{sense.example}}</td>
+        <td>{{sense.grammaticalCategories}}</td>
+        <!-- <td>{{sense.thesaurus}}</td> -->
+        <!-- <td>{{sense.callocations}}</td> -->
+        <td>{{sense.cefr}}</td>
+        <td>{{sense.topic}}</td>
+        <td><button class="btn btn-primary float-right" type="submit">Edit</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!-- <td></td> -->
+        <!-- <td></td> -->
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary float-right" type="submit">Add</button></td>
+      </tr>
+    </tbody>
+  </table>

@@ -146,7 +146,7 @@
 		<value>
 			MATCH (word: Word)-[:HAS_SENSE]->(sense: Sense)
 			WHERE word.expression =~ ".*" + $expression + ".*"
-			WITH word, collect(sense) as senses
+			WITH word, collect(sense{.*}) as senses
 			RETURN {expression: word.expression, sense: senses} as word
 		</value>
 	</data>
