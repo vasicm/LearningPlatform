@@ -1,0 +1,308 @@
+﻿{
+  "definitions": {
+    "Sense": {
+      "additionalProperties": false,
+      "properties": {
+        "callocations": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cefr": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "definition": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "example": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "grammaticalCategories": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "thesaurus": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "topic": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "Text": {
+      "additionalProperties": false,
+      "properties": {
+        "author": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "content": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "publisher": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "topic": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WeatherForecast": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "temperatureC": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "temperatureF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Word": {
+      "additionalProperties": false,
+      "properties": {
+        "expression": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "sense": {
+          "items": {
+            "$ref": "#/definitions/Sense"
+          },
+          "type": "array",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    }
+  },
+  "info": {
+    "description": "Vocabulary Booster API",
+    "title": "Vocabulary Booster API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Text/add": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "operationId": "AddText",
+        "parameters": [
+          {
+            "default": "1.0",
+            "description": "The requested API version",
+            "in": "query",
+            "name": "api-version",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Text"
+            }
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The text.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "tags": [
+          "Text"
+        ]
+      }
+    },
+    "/api/Text/search": {
+      "put": {
+        "operationId": "SearchText",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "phrase",
+            "type": "string"
+          },
+          {
+            "default": "1.0",
+            "description": "The requested API version",
+            "in": "query",
+            "name": "api-version",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The text.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Text"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Text"
+        ]
+      }
+    },
+    "/api/WeatherForecast": {
+      "get": {
+        "operationId": "Get",
+        "parameters": [
+          {
+            "default": "1.0",
+            "description": "The requested API version",
+            "in": "query",
+            "name": "api-version",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/WeatherForecast"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "WeatherForecast"
+        ]
+      }
+    },
+    "/api/Word/add": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "operationId": "AddWord",
+        "parameters": [
+          {
+            "default": "1.0",
+            "description": "The requested API version",
+            "in": "query",
+            "name": "api-version",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Word"
+            }
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The text.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "tags": [
+          "Word"
+        ]
+      }
+    },
+    "/api/Word/search": {
+      "get": {
+        "operationId": "SearchWord",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "phrase",
+            "type": "string"
+          },
+          {
+            "default": "1.0",
+            "description": "The requested API version",
+            "in": "query",
+            "name": "api-version",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The word.",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Word"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Word"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "x-components": {}
+}
