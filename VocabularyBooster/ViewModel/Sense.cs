@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using VocabularyBooster.Core.GraphModel;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace VocabularyBooster.Core
+namespace VocabularyBooster.ViewModel
 {
-    public class Sense : GraphNodeBase
+    public class Sense
     {
         public string Definition { get; set; }
 

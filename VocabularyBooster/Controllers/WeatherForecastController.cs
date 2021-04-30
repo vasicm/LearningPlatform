@@ -10,9 +10,9 @@ using VocabularyBooster.Service;
 
 namespace VocabularyBooster.Controllers
 {
-    [Route(CommonRoute.BaseApiRoute + "/v{api-version:apiVersion}/[controller]")]
+    [Route(CommonRoute.BaseApiRoute + "/[controller]")]
     [ApiController]
-    [ApiVersion("1.0")]
+    // [ApiVersion("1.0")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

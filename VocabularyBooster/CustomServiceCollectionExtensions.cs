@@ -126,11 +126,11 @@ namespace VocabularyBooster
                 options =>
                 {
                     // no implicit version
-                    options.AssumeDefaultVersionWhenUnspecified = false;
+                    options.AssumeDefaultVersionWhenUnspecified = true;
                     // support only url segment version reader
-                    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+                    // options.ApiVersionReader = new UrlSegmentApiVersionReader();
                     // report api versions in response header
-                    //options.ReportApiVersions = true;
+                    options.ReportApiVersions = true;
                 });
         }
     }
