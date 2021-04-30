@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Service",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.Test", "VocabularyBooster.Test\VocabularyBooster.Test.csproj", "{F5BBA455-F952-4CFA-96BC-A86824FF01E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.ServiceClient.Anki", "VocabularyBooster.ServiceClient.Anki\VocabularyBooster.ServiceClient.Anki.csproj", "{66E51F05-C285-4603-89A0-23533900727D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.ServiceClient.Anki", "VocabularyBooster.ServiceClient.Anki\VocabularyBooster.ServiceClient.Anki.csproj", "{66E51F05-C285-4603-89A0-23533900727D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyBooster.FlashcardsService.Interface", "VocabularyBooster.FlashcardsService.Interface\VocabularyBooster.FlashcardsService.Interface.csproj", "{CE967585-0868-4269-AFD3-67030E918950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyBooster.FlashcardsService.Interface", "VocabularyBooster.FlashcardsService.Interface\VocabularyBooster.FlashcardsService.Interface.csproj", "{CE967585-0868-4269-AFD3-67030E918950}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
