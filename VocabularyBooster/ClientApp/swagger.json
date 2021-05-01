@@ -64,29 +64,6 @@
       },
       "type": "object"
     },
-    "WeatherForecast": {
-      "additionalProperties": false,
-      "properties": {
-        "date": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "summary": {
-          "type": "string",
-          "x-nullable": true
-        },
-        "temperatureC": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "temperatureF": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Word": {
       "additionalProperties": false,
       "properties": {
@@ -112,7 +89,7 @@
   },
   "paths": {
     "/api/Text/add": {
-      "get": {
+      "put": {
         "consumes": [
           "application/json",
           "text/json"
@@ -153,7 +130,7 @@
       }
     },
     "/api/Text/search": {
-      "put": {
+      "get": {
         "operationId": "SearchText",
         "parameters": [
           {
@@ -187,39 +164,6 @@
         },
         "tags": [
           "Text"
-        ]
-      }
-    },
-    "/api/WeatherForecast": {
-      "get": {
-        "operationId": "Get",
-        "parameters": [
-          {
-            "default": "1.0",
-            "description": "The requested API version",
-            "in": "query",
-            "name": "api-version",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/WeatherForecast"
-              },
-              "type": "array"
-            }
-          }
-        },
-        "tags": [
-          "WeatherForecast"
         ]
       }
     },

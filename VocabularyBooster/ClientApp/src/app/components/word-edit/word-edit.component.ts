@@ -10,7 +10,6 @@ import { WordService } from 'src/app/data/api/services';
 })
 export class WordEditComponent implements OnInit {
   @Input('word') word: Word;
-
   form: FormGroup;
 
   constructor(
@@ -32,7 +31,6 @@ export class WordEditComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.getRawValue().definition.trim())
     this.wordService.AddWord({
       body: {
         expression: this.form.getRawValue().expression.trim(),

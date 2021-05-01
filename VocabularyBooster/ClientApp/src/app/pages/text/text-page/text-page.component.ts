@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Word } from 'src/app/data/api/models';
-import { WordService } from 'src/app/data/api/services';
+import { Text } from 'src/app/data/api/models';
+import { TextService } from 'src/app/data/api/services';
 
 @Component({
-  templateUrl: './dictionary-page.component.html',
-  styleUrls: ['./dictionary-page.component.css']
+  templateUrl: './text-page.component.html',
+  styleUrls: ['./text-page.component.css']
 })
-export class DictionaryPageComponent implements OnInit {
+export class TextPageComponent implements OnInit {
   form: FormGroup;
-  wordList: Word[];
+  textList: Text[];
 
   constructor(
-    private wordService: WordService
+    private textService: TextService
   ) { }
 
   ngOnInit() {
@@ -22,10 +22,10 @@ export class DictionaryPageComponent implements OnInit {
   }
 
   submit() {
-    this.wordService.SearchWord({
+    this.textService.SearchText({
       phrase: this.form.getRawValue().query.trim()
     }).subscribe(x => {
-      this.wordList = x;
+      this.textList = x;
     })
   }
 }

@@ -11,6 +11,8 @@ import { HomePageComponent } from './pages/home/home-page/home-page.component';
 import { DictionaryModule } from './pages/dictionary/dictionary.module';
 import { DictionaryPageComponent } from './pages/dictionary/dictionary-page/dictionary-page.component';
 import { ComponentsModule } from './components/components.module';
+import { TextModule } from './pages/text/text.module';
+import { TextPageComponent } from './pages/text/text-page/text-page.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { ComponentsModule } from './components/components.module';
     RouterModule.forRoot([
       { path: '', component: HomePageComponent, pathMatch: 'full' },
       { path: 'dictionary', component: DictionaryPageComponent },
+      { path: 'text', component: TextPageComponent },
     ]),
     HomeModule,
     DictionaryModule,
-    ComponentsModule
+    ComponentsModule,
+    TextModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
 import { TextService } from './services/text.service';
-import { WeatherForecastService } from './services/weather-forecast.service';
 import { WordService } from './services/word.service';
 
 /**
@@ -21,7 +20,6 @@ import { WordService } from './services/word.service';
   providers: [
     ApiConfiguration,
     TextService,
-    WeatherForecastService,
     WordService
   ],
 })

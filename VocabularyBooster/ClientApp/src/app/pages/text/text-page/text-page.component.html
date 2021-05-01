@@ -1,0 +1,35 @@
+<div class="page-header mb-5">
+    <i class="fas fa-search text-white fa-bg"></i>
+    <div class="container-fluid">
+        <h3>Dictionary</h3>
+        <form [formGroup]="form" (submit)="submit()">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Query: </label>
+                            <input type="text" class="form-control" formControlName="query"
+                                 autocomplete="outlet-name" maxlength="30">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-2">
+                    <label></label><br>
+                    <button class="btn btn-primary float-right" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-primary float-letf mt-2 mb-2" type="submit">Add</button>
+        <vb-text-edit></vb-text-edit>
+        <div *ngFor="let text of textList">
+                <div>{{text.title}}</div>
+                <div>{{text.author}}</div>
+                <div>{{text.publisher}}</div>
+                <div>{{text.topic}}</div>
+                <div>{{text.type}}</div>
+                <div>{{text.content}}</div>
+            <vb-text [text]='text'></vb-text>
+        </div>
+    </div>
+</div>

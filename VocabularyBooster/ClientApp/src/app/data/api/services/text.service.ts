@@ -38,7 +38,7 @@ class TextService extends __BaseService {
     __body = params.body;
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
-      'GET',
+      'PUT',
       this.rootUrl + `/api/Text/add`,
       __body,
       {
@@ -85,7 +85,7 @@ class TextService extends __BaseService {
     if (params.phrase != null) __params = __params.set('phrase', params.phrase.toString());
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
-      'PUT',
+      'GET',
       this.rootUrl + `/api/Text/search`,
       __body,
       {
