@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <h3>Add new word definition</h3>
+    <form [formGroup]="form" (submit)="submit()">
+        <div class="row">
+            <div class="col">
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Expression: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="expression"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Definition: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="definition"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Example: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="example"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Grammatical categories: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="grammaticalCategories"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Thesaurus: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="thesaurus"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Callocations: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="callocations"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> CEFR: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="cefr"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <label class="small font-weight-bold"> Topic: </label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName="topic"
+                             autocomplete="outlet-name" maxlength="30">
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button class="btn btn-primary float-right" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
