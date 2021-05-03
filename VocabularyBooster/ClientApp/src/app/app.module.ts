@@ -13,6 +13,8 @@ import { DictionaryPageComponent } from './pages/dictionary/dictionary-page/dict
 import { ComponentsModule } from './components/components.module';
 import { TextModule } from './pages/text/text.module';
 import { TextPageComponent } from './pages/text/text-page/text-page.component';
+import { ModalsModule } from './modals/modals.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { TextPageComponent } from './pages/text/text-page/text-page.component';
     HomeModule,
     DictionaryModule,
     ComponentsModule,
-    TextModule
+    TextModule,
+    ModalsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,74 @@
+<div class="modal-header">
+    <h5 class="modal-title">Add new text</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<form [formGroup]="form" (submit)="submit()">
+    <div class="modal-body" [ngClass]="{'disableDiv': isDisabled}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Title: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="title" autocomplete="outlet-name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Author: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="author" autocomplete="outlet-name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Publisher: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="publisher"
+                                autocomplete="outlet-name" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Topic: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="topic" autocomplete="outlet-name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Type: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="type" autocomplete="outlet-name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-4">
+                            <label class="small font-weight-bold"> Content: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" formControlName="content" autocomplete="outlet-name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+    </div>
+</form>

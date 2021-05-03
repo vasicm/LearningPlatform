@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { Word } from 'src/app/data/api/models';
 import { WordService } from 'src/app/data/api/services';
+import { WordEditModalComponent } from 'src/app/modals/word-edit-modal/word-edit-modal.component';
 
 @Component({
   templateUrl: './dictionary-page.component.html',
@@ -12,7 +14,8 @@ export class DictionaryPageComponent implements OnInit {
   wordList: Word[];
 
   constructor(
-    private wordService: WordService
+    private wordService: WordService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -27,5 +30,17 @@ export class DictionaryPageComponent implements OnInit {
     }).subscribe(x => {
       this.wordList = x;
     })
+  }
+
+  addWord(){
+    this.modalService.show(WordEditModalComponent, {
+      class: "modal-lg modal-dialog-centered",
+      ignoreBackdropClick: true,
+      initialState: {
+        data: {
+          word: null
+        }
+      }
+    });
   }
 }

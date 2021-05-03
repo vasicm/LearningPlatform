@@ -3,25 +3,18 @@
     <div class="container-fluid">
         <h3>Dictionary</h3>
         <form [formGroup]="form" (submit)="submit()">
-            <div class="row">
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-4">
-                            <label class="small font-weight-bold"> Query: </label>
-                            <input type="text" class="form-control" formControlName="query"
-                                 autocomplete="outlet-name" maxlength="30">
-                        </div>
+            <div class="flex-row mt-2 mb-2">
+                <div class="d-flex justify-content-center">
+                    <div class="float-left">
+                        <input type="text" class="form-control float-left" formControlName="query"
+                            autocomplete="outlet-name" maxlength="30">
                     </div>
-                </div>
-                
-                <div class="col-2">
-                    <label></label><br>
-                    <button class="btn btn-primary float-right" type="submit">Search</button>
+                    <button class="btn btn-primary float-left ml-1" type="submit">Search</button>
+                    <button class="btn btn-primary float-left ml-3" (click)="addWord()">Add</button>
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary float-letf mt-2 mb-2" type="submit">Add</button>
-        <vb-word-edit></vb-word-edit>
+
         <div *ngFor="let word of wordList">
             <vb-word [word]='word'></vb-word>
         </div>

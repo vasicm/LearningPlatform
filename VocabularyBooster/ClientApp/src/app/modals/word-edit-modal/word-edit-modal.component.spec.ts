@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WordEditComponent } from './word-edit.component';
+import { WordEditModalComponent } from './word-edit-modal.component';
 
-describe('WordEditComponent', () => {
-  let component: WordEditComponent;
-  let fixture: ComponentFixture<WordEditComponent>;
+describe('WordEditModalComponent', () => {
+  let component: WordEditModalComponent;
+  let fixture: ComponentFixture<WordEditModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WordEditComponent ]
+      declarations: [ WordEditModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WordEditComponent);
+    fixture = TestBed.createComponent(WordEditModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TextPageComponent } from './text-page/text-page.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalsModule } from 'src/app/modals/modals.module';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    ModalsModule
   ]
 })
 export class TextModule { }

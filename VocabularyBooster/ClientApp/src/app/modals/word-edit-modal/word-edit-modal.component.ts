@@ -1,19 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalCloseService } from 'src/app/common/modal-close.service';
 import { Word } from 'src/app/data/api/models';
 import { WordService } from 'src/app/data/api/services';
 
 @Component({
-  selector: 'vb-word-edit',
-  templateUrl: './word-edit.component.html',
-  styleUrls: ['./word-edit.component.css']
+  selector: 'vb-word-edit-modal',
+  templateUrl: './word-edit-modal.component.html',
+  styleUrls: ['./word-edit-modal.component.css']
 })
-export class WordEditComponent implements OnInit {
-  @Input('word') word: Word;
+export class WordEditModalComponent implements OnInit {
+  data: {
+    word: Word;
+  };
   form: FormGroup;
 
   constructor(
-    private wordService: WordService
+    private wordService: WordService,
+    private modalClose: ModalCloseService
   ) {
   }
 
@@ -47,5 +51,9 @@ export class WordEditComponent implements OnInit {
         ]
       }
     }).subscribe();
+  }
+
+  close() {
+    this.modalClose.hide();
   }
 }

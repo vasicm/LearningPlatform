@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { Text } from 'src/app/data/api/models';
 import { TextService } from 'src/app/data/api/services';
+import { TextEditModalComponent } from 'src/app/modals/text-edit-modal/text-edit-modal.component';
 
 @Component({
   templateUrl: './text-page.component.html',
@@ -12,7 +14,8 @@ export class TextPageComponent implements OnInit {
   textList: Text[];
 
   constructor(
-    private textService: TextService
+    private textService: TextService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -27,5 +30,17 @@ export class TextPageComponent implements OnInit {
     }).subscribe(x => {
       this.textList = x;
     })
+  }
+
+  addText() {
+    this.modalService.show(TextEditModalComponent, {
+      class: "modal-lg modal-dialog-centered",
+      ignoreBackdropClick: true,
+      initialState: {
+        data: {
+          text: null
+        }
+      }
+    });
   }
 }

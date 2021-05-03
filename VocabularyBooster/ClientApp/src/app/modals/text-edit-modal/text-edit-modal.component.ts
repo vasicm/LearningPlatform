@@ -1,19 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalCloseService } from 'src/app/common/modal-close.service';
 import { Text } from 'src/app/data/api/models';
 import { TextService } from 'src/app/data/api/services';
 
 @Component({
-  selector: 'vb-text-edit',
-  templateUrl: './text-edit.component.html',
-  styleUrls: ['./text-edit.component.css']
+  selector: 'vb-text-edit-modal',
+  templateUrl: './text-edit-modal.component.html',
+  styleUrls: ['./text-edit-modal.component.css']
 })
-export class TextEditComponent implements OnInit {
-  @Input('text') text: Text;
+export class TextEditModalComponent implements OnInit {
+  data: {
+    text: Text;
+  };
   form: FormGroup;
-
   constructor(
-    private textService: TextService
+    private textService: TextService,
+    private modalClose: ModalCloseService
   ) { }
 
   ngOnInit() {
@@ -28,7 +31,6 @@ export class TextEditComponent implements OnInit {
   }
 
   submit() {
-    debugger;
     this.textService.AddText({
       body: {
         title: this.form.getRawValue().title.trim(),
@@ -39,5 +41,9 @@ export class TextEditComponent implements OnInit {
         content: this.form.getRawValue().content.trim(),
       }
     }).subscribe();
+  }
+
+  close() {
+    this.modalClose.hide();
   }
 }

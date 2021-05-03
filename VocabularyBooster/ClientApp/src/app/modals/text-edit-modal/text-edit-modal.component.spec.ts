@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextEditComponent } from './text-edit.component';
+import { TextEditModalComponent } from './text-edit-modal.component';
 
-describe('TextEditComponent', () => {
-  let component: TextEditComponent;
-  let fixture: ComponentFixture<TextEditComponent>;
+describe('TextEditModalComponent', () => {
+  let component: TextEditModalComponent;
+  let fixture: ComponentFixture<TextEditModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextEditComponent ]
+      declarations: [ TextEditModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextEditComponent);
+    fixture = TestBed.createComponent(TextEditModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
